@@ -2,7 +2,7 @@
 
 secretName="cloudflare-token"
 envFile="secrets/cloudflare.env"
-sealedSecretFile="overlays/mgmt/sealed-secrets.yaml"
+sealedSecretFile="resources/mgmt/sealed-secrets.yaml"
 namespace="cert-manager"
 
 certFile="secrets/sealed-secrets.crt"
