@@ -7,7 +7,7 @@ appName=$( echo $repoName | sed 's/kustomize-//' )
 
 argoConfigSrc="argocd/*"
 argoConfigDest="apps/"
-argoConfigRegex="$argoConfigSrc/$appName.yaml"
+argoConfigRegex="argocd/[^/]+/${appName}\\.yaml"
 
 function exitWhenNotOnMasterBranch() {
   if [[ "$(git branch --show-current)" != "master" ]]; then
