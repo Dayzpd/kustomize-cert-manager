@@ -2,5 +2,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: cert-manager
+configurations:
+- kustomize-config.yaml
 resources:
 - ../../bases/v1.18.2
+- sealed-secrets.yaml
+- cluster-issuers.yaml
+secretGenerator:
+  - name: cloudflare-token
+    files:
+      - ./sealed-secrets.yaml
+    options:
+      annotations:
+        config.kubernetes.io/local-config: "true"
