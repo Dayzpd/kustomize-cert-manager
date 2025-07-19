@@ -6,3 +6,17 @@ resources:
 - ../../bases/v1.18.2
 - external-secrets.yaml
 - cluster-issuers.yaml
+patches:
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/args/-
+      value: "--dns01-recursive-nameservers-only"
+    - op: add
+      path: /spec/template/spec/containers/0/args/-
+      value: "--dns01-recursive-nameservers=1.1.1.1:53,8.8.8.8:53"
+  target:
+    kind: Deployment
+    group: apps
+    version: v1
+    name: cert-manager
+    namespace: cert-manager
