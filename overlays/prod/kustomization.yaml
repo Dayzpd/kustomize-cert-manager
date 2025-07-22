@@ -5,3 +5,14 @@ resources:
 - ../../bases/v1.18.2
 - external-secrets.yaml
 - cluster-issuers.yaml
+patches:
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/args/-
+      value: "--enable-gateway-api "
+  target:
+    kind: Deployment
+    group: apps
+    version: v1
+    name: cert-manager
+    namespace: cert-manager
