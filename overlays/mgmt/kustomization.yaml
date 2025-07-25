@@ -9,6 +9,7 @@ resources:
 - cluster-issuers.yaml
 secretGenerator:
   - name: cloudflare-token
+    namespace: cert-manager
     files:
       - ./sealed-secrets.yaml
     options:
